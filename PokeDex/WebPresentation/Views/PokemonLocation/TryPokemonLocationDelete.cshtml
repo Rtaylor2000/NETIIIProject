@@ -1,0 +1,85 @@
+﻿@model DataObject.PokemonLocation
+
+@{
+    ViewBag.Title = "TryPokemonLocationDelete";
+}
+
+<h2>TryPokemonLocationDelete</h2>
+
+<div>
+    <h4>PokemonLocation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PokemonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PokemonName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HowFound)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HowFound)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelFound)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelFound)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SpeciesEncounterRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpeciesEncounterRate)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <h2>Are you sure you want to delete this pokemon?</h2>
+    @using (Html.BeginForm("Delete", "PokemonLocation", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("delete", true)
+        @Html.Hidden("pokemonName", Model.PokemonName)
+        @Html.Hidden("locationName", Model.LocationName)
+        @Html.Hidden("levelFound", Model.LevelFound)
+        @Html.Hidden("gameName", Model.GameName)
+        <input type="submit" value="Yes" class="btn btn-default" />
+    }
+    @using (Html.BeginForm("Delete", "PokemonLocation", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("delete", false)
+        @Html.Hidden("pokemonName", Model.PokemonName)
+        @Html.Hidden("locationName", Model.LocationName)
+        @Html.Hidden("levelFound", Model.LevelFound)
+        @Html.Hidden("gameName", Model.GameName)
+        <input type="submit" value="No" class="btn btn-default" />
+    }
+</div>

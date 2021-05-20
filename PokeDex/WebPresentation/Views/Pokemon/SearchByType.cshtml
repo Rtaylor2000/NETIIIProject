@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DataObject.Pokemon>
+
+@{
+    ViewBag.Title = "AllPokemon";
+    IEnumerable<String> pokemonTypes = (IEnumerable<String>)new List<string>()
+{ "NONE", "BUG", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST", "GRASS",
+        "GROUND", "ICE", "NORMAL", "POISON", "PSYCHIC", "ROCK", "WATER" };
+}
+
+<h2>Pokemon</h2>
+
+<div>
+    @using (Html.BeginForm("SearchByName", "Pokemon", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <label for="pokemonName">Pokemon Name: </label>
+        <input type="text" id="pokemonName" name="pokemonName">
+        <input type="submit" value="search" class="btn btn-default" />
+    }
+
+    @using (Html.BeginForm("SearchByNumber", "Pokemon", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <label for="pokedexNumber">Pokedex Number: </label>
+        <input type="number" id="pokedexNumber" name="pokedexNumber" min="0">
+        <input type="submit" value="search" class="btn btn-default" />
+    }
+
+    @using (Html.BeginForm("SearchByType", "Pokemon", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <label for="type">Pokemon Type: </label>
+        @Html.DropDownList("type",
+                      new SelectList(pokemonTypes),
+                      new { @class = "form-control" });
+        <input type="submit" value="search" class="btn btn-default" />
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PokedexNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PokemonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOne)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeTwo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokedexNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PokemonName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOne)
+            </td>
+            <td>
+                @if (item.TypeTwo != "None")
+                {
+                    @Html.DisplayFor(modelItem => item.TypeTwo)
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { pokemonName = item.PokemonName })
+            </td>
+        </tr>
+    }
+
+</table>

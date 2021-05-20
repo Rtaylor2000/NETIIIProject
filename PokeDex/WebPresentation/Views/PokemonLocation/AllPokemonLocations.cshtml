@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DataObject.PokemonLocation>
+
+@{
+    ViewBag.Title = "AllPokemonLocations";
+}
+
+<h2>AllPokemonLocations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PokemonName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HowFound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelFound)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpeciesEncounterRate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PokemonName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HowFound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelFound)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpeciesEncounterRate)
+        </td>
+        <td>
+            @if (User.IsInRole("admin") || User.IsInRole("researcher"))
+            {
+                @Html.ActionLink("Edit", "Edit", new {
+               pokemonName = item.PokemonName,
+               locationName = item.LocationName,
+               levelFound = item.LevelFound,
+               gameName = item.GameName
+           });
+            }
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink(" | Delete", "TryPokemonLocationDelete", new {
+               pokemonName = item.PokemonName,
+               locationName = item.LocationName,
+               levelFound = item.LevelFound,
+               gameName = item.GameName
+           })
+            }
+            </td>
+    </tr>
+}
+
+</table>

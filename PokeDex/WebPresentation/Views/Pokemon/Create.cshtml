@@ -1,0 +1,134 @@
+﻿@model DataObject.Pokemon
+
+@{
+    ViewBag.Title = "Create";
+    IEnumerable<String> pokemonPrimaryTypes = (IEnumerable<String>) new List<string>() 
+    { "BUG", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST", "GRASS", 
+        "GROUND", "ICE", "NORMAL", "POISON", "PSYCHIC", "ROCK", "WATER"};
+    IEnumerable<String> pokemonSecondaryTypes = (IEnumerable<String>)new List<string>() 
+    { "NONE", "BUG", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST", "GRASS", 
+        "GROUND", "ICE", "NORMAL", "POISON", "PSYCHIC", "ROCK", "WATER" };
+
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("CreatePokemon", "Pokemon", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Pokemon</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PokedexNumber, htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PokedexNumber, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                @Html.ValidationMessageFor(model => model.PokedexNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PokemonName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PokemonName, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.PokemonName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TypeOne, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TypeOne,
+                                 new SelectList(pokemonPrimaryTypes),
+                                 new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TypeOne, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TypeTwo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.TypeTwo,
+                                 new SelectList(pokemonSecondaryTypes),
+                                 new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TypeTwo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CatchRate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CatchRate, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0  } })
+                @Html.ValidationMessageFor(model => model.CatchRate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseHP, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseHP, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                @Html.ValidationMessageFor(model => model.BaseHP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseAttack, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseAttack, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                @Html.ValidationMessageFor(model => model.BaseAttack, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseDefense, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseDefense, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                @Html.ValidationMessageFor(model => model.BaseDefense, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseSpecialAttack, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseSpecialAttack, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                @Html.ValidationMessageFor(model => model.BaseSpecialAttack, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseSpecialDefense, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseSpecialDefense, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                @Html.ValidationMessageFor(model => model.BaseSpecialDefense, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BaseSpeed, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BaseSpeed, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                @Html.ValidationMessageFor(model => model.BaseSpeed, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PokemonDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PokemonDescription, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.PokemonDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "AllPokemon")
+</div>

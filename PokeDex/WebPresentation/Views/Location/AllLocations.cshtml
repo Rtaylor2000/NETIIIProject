@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DataObject.Location>
+
+@{
+    ViewBag.Title = "AllLocations";
+}
+
+<h2>All Locations</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { locationName = item.LocationName})
+            @if (User.IsInRole("admin") || User.IsInRole("researcher"))
+            {
+                @Html.ActionLink("| Edit", "Edit", new { locationName = item.LocationName })
+            }
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("| Delete", "TryLocationDelete", new { locationName = item.LocationName })
+            }
+            </td>
+    </tr>
+}
+
+</table>

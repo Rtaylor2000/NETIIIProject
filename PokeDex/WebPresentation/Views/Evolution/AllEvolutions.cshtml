@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DataObject.Evolution>
+
+@{
+    ViewBag.Title = "AllEvolutions";
+}
+
+<h2>AllEvolutions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Reactant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvolutionCondition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvolvesInto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reactant)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvolutionCondition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvolvesInto)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { reactant = item.Reactant, 
+                condition = item.EvolutionCondition, evolvesInto = item.EvolvesInto }) 
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink(" | Delete", "TryEvolutionDelete", new { reactant = item.Reactant, 
+                    condition = item.EvolutionCondition, evolvesInto = item.EvolvesInto })
+            }
+        </td>
+    </tr>
+}
+
+</table>

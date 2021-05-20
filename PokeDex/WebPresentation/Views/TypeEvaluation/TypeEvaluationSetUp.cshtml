@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "TypeEvaluationSetUp";
+    IEnumerable<String> pokemonPrimaryTypes = (IEnumerable<String>)new List<string>()
+{ "BUG", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST", "GRASS",
+        "GROUND", "ICE", "NORMAL", "POISON", "PSYCHIC", "ROCK", "WATER"};
+    IEnumerable<String> pokemonSecondaryTypes = (IEnumerable<String>)new List<string>()
+{ "NONE", "BUG", "DRAGON", "ELECTRIC", "FIGHTING", "FIRE", "FLYING", "GHOST", "GRASS",
+        "GROUND", "ICE", "NORMAL", "POISON", "PSYCHIC", "ROCK", "WATER" };
+}
+
+<h2>Type Evaluation</h2>
+@using (Html.BeginForm("TypeEvaluation", "TypeEvaluation", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+<div class="row">
+    <div class="col-md-8">
+        @Html.Label("Attacking Pokemon Primary Type: ")&nbsp;
+        @Html.DropDownList("AttackTypeOne", new SelectList(pokemonPrimaryTypes),
+            new { @class = "form-control" })
+        <br />
+        @Html.Label("Attacking Pokemon Secondary Type: ")&nbsp;
+        @Html.DropDownList("AttackTypeTwo", new SelectList(pokemonSecondaryTypes),
+            new { @class = "form-control" })
+    </div>
+    <div class="col-md-8">
+        @Html.Label("Attacking Pokemon Primary Type: ")&nbsp;
+        @Html.DropDownList("DeffenceTypeOne", new SelectList(pokemonPrimaryTypes),
+            new { @class = "form-control" })
+        <br />
+        @Html.Label("Attacking Pokemon Secondary Type: ")&nbsp;
+        @Html.DropDownList("DeffenceTypeTwo", new SelectList(pokemonSecondaryTypes),
+            new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

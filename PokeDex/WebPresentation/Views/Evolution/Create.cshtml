@@ -1,0 +1,61 @@
+﻿@model DataObject.Evolution
+
+@{
+    ViewBag.Title = "Create";
+    IEnumerable<String> pokemonNames = ViewBag.PokemonNames;
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("CreateEvolution", "Evolution", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Evolution</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reactant, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Reactant,
+                                 new SelectList(pokemonNames),
+                                 new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Reactant, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EvolutionCondition, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EvolutionCondition, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.EvolutionCondition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EvolvesInto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.EvolvesInto,
+                                 new SelectList(pokemonNames),
+                                 new { @class = "form-control", @required = "required" })
+                @Html.ValidationMessageFor(model => model.EvolvesInto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "AllEvolutions")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

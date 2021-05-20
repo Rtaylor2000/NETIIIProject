@@ -1,0 +1,92 @@
+﻿<Window x:Class="Presentation.PokemonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="PokemonWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109"></ColumnDefinition>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="110"></ColumnDefinition>
+            <ColumnDefinition Width="140"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="lblDexNumber" VerticalAlignment="Center" HorizontalAlignment="Center" 
+               Grid.Row="0" Grid.Column="2">DexNumber</Label>
+
+        <Label x:Name="lblPokemonName" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="0" 
+               Grid.Column="3">Pokemon Name</Label>
+
+        <Label x:Name="lblTypeOne" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="0" 
+               Grid.Column="4">Type One</Label>
+
+        <Label x:Name="lblTypeTwo" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="0" 
+               Grid.Column="5">Type Two</Label>
+
+        <Label x:Name="lblDescription" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="1" 
+               Grid.Column="0" Grid.ColumnSpan="7">Description</Label>
+
+        <Label x:Name="lblChatchRate" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="2" 
+               Grid.Column="0">Chatch Rate: 100%</Label>
+
+        <Label x:Name="lblHP" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="2" 
+               Grid.Column="1">Base HP: 222</Label>
+        
+        <Label x:Name="lblAttack" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="2" 
+               Grid.Column="2">Base Attack: 222</Label>
+
+        <Label x:Name="lblDeffense" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="2" 
+               Grid.Column="3">Base Deffense: 222</Label>
+
+        <Label x:Name="lblSAttack" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="2" 
+               Grid.Column="4">Base Special Attack: 222</Label>
+
+        <Label x:Name="lblSDeffense" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="2" 
+               Grid.Column="5">Base Special Deffense: 222</Label>
+
+        <Label x:Name="lblSpeed" VerticalAlignment="Center" 
+               HorizontalAlignment="Center" Grid.Row="2" 
+               Grid.Column="6">Base Speed: 222</Label>
+
+        <Label x:Name="lblLocationsFound" VerticalAlignment="Top" 
+               HorizontalAlignment="Center" Grid.Row="3" Margin="0 20 0 0"
+               Grid.Column="0">Locations Found:</Label>
+
+        <DataGrid x:Name="dgPokemonList" Grid.Row="3" Grid.Column="1" SelectionMode="Single" 
+                              IsReadOnly="True" Grid.ColumnSpan="5" Margin="10"/>
+
+        <Label x:Name="lblEvolutionFound" VerticalAlignment="Top" 
+               HorizontalAlignment="Center" Grid.Row="4" Margin="0 20 0 0"
+               Grid.Column="0">Evolution:</Label>
+
+        <DataGrid x:Name="dgEvolutionList" Grid.Row="4" Grid.Column="1" SelectionMode="Single" 
+                              IsReadOnly="True" Grid.ColumnSpan="5" Margin="10"/>
+
+        <Button x:Name="btnExit" HorizontalAlignment="Right" Width="50" Height="30"
+               Grid.Row="5" Grid.Column="3" Click="btnExit_Click">Exit</Button>
+    </Grid>
+</Window>
